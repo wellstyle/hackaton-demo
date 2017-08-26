@@ -15,9 +15,13 @@ public interface JusticeRepository extends JpaRepository<Justice, Long> {
 			+ "from Judgement j where j.justice = ?1")
 	long totalCount(Justice justice);
 	
-    @Query("select sum(j.penalty) / count(j) as averagePenalty "
+    @Query("select sum(j.penalty)*1.0 / count(j) as averagePenalty "
             + "from Judgement j where j.justice = ?1")
-    long averagePenalty(Justice justice);
+    float averagePenalty(Justice justice);
+    
+   /* @Query("select sum(j.penalty) as sumPenalty "
+    		   + "from Judgement j where j.justice = ?1")
+    float sumPenalty(Justice justice);*/
     
     
     

@@ -26,12 +26,15 @@ public class JusticeService {
 		JusticeStatisticDto justiceStatisticDto = new JusticeStatisticDto();
 		Justice justice = justiceRepository.findOne(id);
 		List<Object[]> ratingCount = justiceRepository.countByPenalty(justice);
-		long averagePenalty = justiceRepository.averagePenalty(justice);
+		float averagePenalty = justiceRepository.averagePenalty(justice);
 		long totalCount = justiceRepository.totalCount(justice);
+		long sumPenalty = (long) (averagePenalty * totalCount) ;
+		averagePenalty = Math.round(averagePenalty * 10)/10f;
+		
 		justiceStatisticDto.setTotalCountByPenalty(ratingCount);
 		justiceStatisticDto.setAveragePenalty(averagePenalty);
 		justiceStatisticDto.setTotalCount(totalCount);
-		
+		justiceStatisticDto.setSumPenalty(sumPenalty);
 		return justiceStatisticDto;
 	}
 	
