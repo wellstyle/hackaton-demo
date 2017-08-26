@@ -1,0 +1,10 @@
+-- 데이터베이스 생성
+CREATE DATABASE IF NOT EXISTS `demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+-- 사용자 생성
+CREATE USER 'demo_user'@'%' IDENTIFIED BY 'demo4r5t6y';
+CREATE USER 'demo_user'@'localhost' IDENTIFIED BY 'demo4r5t6y';
+
+-- 권한 생성
+GRANT ALL PRIVILEGES ON demo.* TO 'demo_user'@'%';
+FLUSH PRIVILEGES;

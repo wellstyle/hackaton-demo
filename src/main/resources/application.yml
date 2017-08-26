@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/preorder?characterEncoding=utf-8
+    username: demo_user
+    password: demo4r5t6y
+  jpa:
+    hibernate:
+      ddl-auto: update
+  thymeleaf:
+    cache: false
