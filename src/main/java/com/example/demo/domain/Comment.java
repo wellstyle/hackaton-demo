@@ -4,11 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -19,9 +16,9 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Judgement {
+public class Comment {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	@Column
 	private Date createdAt;
@@ -30,16 +27,14 @@ public class Judgement {
         this.createdAt = new Date();
     }
     
+    @Column
+    private String name; // 사용자 이름
 	@Column
-	private String name; // 사용자 이름
+	private String content; // 내용
 	@Column
 	private int penalty; // 형량
-//    @JsonIgnore
-//    @ManyToOne(optional = true)
-//    private Justice justice; // 재판
+    @ManyToOne(optional = false)
     @JsonIgnore
-    @ManyToOne(targetEntity=Justice.class, fetch=FetchType.LAZY)
-	@JoinColumn(name="justice_id")
-	private Justice justice; // 재판
+    private Justice justice; // 재판
 	
 }

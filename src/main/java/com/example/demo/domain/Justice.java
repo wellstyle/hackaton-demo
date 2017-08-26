@@ -1,12 +1,17 @@
 package com.example.demo.domain;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
@@ -54,4 +59,9 @@ public class Justice {
 	private String judgment; // 판결
 	@Column
 	private String venue; // 법정
+	@Column
+	private String undertrialPhotoUrl; // 피고인 사진 URL
+    @OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinColumn(name="member_id")
+	private List<Pleading> pleadings;
 }

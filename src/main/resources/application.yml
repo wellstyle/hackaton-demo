@@ -11,3 +11,34 @@ spring:
       ddl-auto: update
   thymeleaf:
     cache: false
+  http:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+demo:
+  file:
+    rootLocation: C:/tmp
+debug: false
+logging:
+  level:
+    com.example.demo: debug
+    
+---
+
+spring:
+  profiles: development
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://220.230.125.122/demo?characterEncoding=utf-8
+    username: demo_user
+    password: demo4r5t6y
+    tomcat:
+      initial-size: 10
+      max-active: 20
+      min-idle: 10
+      max-idle: 10
+      max-wait: 3000  
+demo:
+  file:
+    rootLocation: /var/demo/file
+ 
